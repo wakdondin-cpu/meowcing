@@ -1,0 +1,24 @@
+{
+  "name": "RDP Windows Server Lab",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "runArgs": [
+    "--device=/dev/kvm",
+    "--device=/dev/net/tun",
+    "--cap-add=NET_ADMIN"
+  ],
+  "forwardPorts": [8006, 3389],
+  "portsAttributes": {
+    "8006": {
+      "label": "Windows Web Console",
+      "onAutoForward": "silent",
+      "visibility": "private"
+    },
+    "3389": {
+      "label": "RDP Service",
+      "onAutoForward": "silent",
+      "visibility": "private"
+    }
+  },
+  "overrideCommand": false,
+  "postStartCommand": "/bin/bash .devcontainer/start-worker.sh"
+}
